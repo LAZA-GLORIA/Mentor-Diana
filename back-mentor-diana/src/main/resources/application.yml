@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: mentor-diana
+  profiles:
+    active: local
+
+
