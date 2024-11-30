@@ -1,27 +1,34 @@
 services:
   app:
+    image: mentor:latest
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: db-diana-mentor
+    container_name: mentor-diana-app
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
-      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/db_diana_mentor
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    networks:
+      - mentor-net
     depends_on:
       - postgres
-
   postgres:
     image: postgres:15
     container_name: mentor-diana-postgres
     ports:
       - "5432:5432"
-    env_file:
-    - .env
+    environment:
+      POSTGRES_USER:
+      POSTGRES_PASSWORD:
+      POSTGRES_DB: db_diana_mentor
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
+    networks:
+      - mentor-net
 volumes:
   postgres_data:
+networks:
+  mentor-net:
