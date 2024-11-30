@@ -1,0 +1,18 @@
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Définir le niveau DEBUG pour HikariCP -->
+    <logger name="com.zaxxer.hikari" level="DEBUG" />
+
+    <!-- Définir le niveau DEBUG pour le pilote PostgreSQL -->
+    <logger name="org.postgresql" level="DEBUG" />
+
+    <!-- Définir le niveau de log général (par défaut INFO) -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

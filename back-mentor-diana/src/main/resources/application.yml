@@ -3,5 +3,13 @@ spring:
     name: mentor-diana
   profiles:
     active: local
-
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    sql-migration-prefix: V
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_diana_mentor
+    username:
+    password:
 
